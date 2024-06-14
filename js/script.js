@@ -1,7 +1,75 @@
 // Global variables
 let num1 = 0;
 let num2 = 0;
-let operator;
+let operator = "";
+let displayString = "";
+
+// Global DOM elements
+const buttons = document.querySelectorAll(".button-container .number");
+const display = document.querySelector(".display");
+const addBtn = document.querySelector(".addbtn");
+const subtractBtn = document.querySelector(".subtractbtn");
+const multiplyBtn = document.querySelector(".multiplybtn");
+const divideBtn = document.querySelector(".dividebtn");
+const equalBtn = document.querySelector(".border-bottom-right-radius");
+const clearBtn = document.querySelector(".clearbtn");
+
+// Event listener registration
+function addEventListeners() {
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      displayString += btn.textContent.trim();
+      display.textContent = displayString;
+    });
+  });
+
+  addBtn.addEventListener("click", () => {
+    num1 = +displayString;
+    displayString = "";
+    display.textContent = displayString;
+    operator = "+";
+    console.log(operator);
+  });
+
+  subtractBtn.addEventListener("click", () => {
+    num1 = +displayString;
+    displayString = "";
+    display.textContent = displayString;
+    operator = "-";
+    console.log(operator);
+  });
+
+  multiplyBtn.addEventListener("click", () => {
+    num1 = +displayString;
+    displayString = "";
+    display.textContent = displayString;
+    operator = "*";
+    console.log(operator);
+  });
+
+  divideBtn.addEventListener("click", () => {
+    num1 = +displayString;
+    displayString = "";
+    display.textContent = displayString;
+    operator = "/";
+    console.log(operator);
+  });
+
+  equalBtn.addEventListener("click", () => {
+    num2 = +displayString;
+    displayString = "";
+    displayString += operate(operator, num1, num2);
+    display.textContent = displayString;
+  });
+
+  clearBtn.addEventListener("click", () => {
+    num1 = 0;
+    num2 = 0;
+    operator = "";
+    displayString = "";
+    display.textContent = "0";
+  });
+}
 
 // Functions
 function operate(operator, num1, num2) {
@@ -49,3 +117,5 @@ console.log(`Operate(+, 2, 2) ${operate("+", 2, 2)}`);
 console.log(`Operate(-, 5, 1) ${operate("-", 5, 1)}`);
 console.log(`Operate(*, 2, 2) ${operate("*", 2, 2)}`);
 console.log(`Operate(/, 8, 2) ${operate("/", 8, 2)}`);
+
+addEventListeners();
